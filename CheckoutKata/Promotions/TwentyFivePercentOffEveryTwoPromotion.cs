@@ -1,9 +1,4 @@
 ﻿using CheckOutKata.Models;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace CheckoutKata.Promotions
 {
@@ -26,8 +21,7 @@ namespace CheckoutKata.Promotions
             return total;
         }
 
-        private List<string> _skus = new List<string>() { "D" };
-
+        private readonly List<string> _skus = new List<string>() { "D" };
         private const decimal PercentageIncrease = 0.75m;
         private const int RequiredPromotionQuantity = 2;
     }

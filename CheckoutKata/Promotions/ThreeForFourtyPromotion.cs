@@ -22,8 +22,7 @@ namespace CheckoutKata.Promotions
             return total;
         }
 
-
-        private List<string> _skus = new List<string>() { "B" };
+        private readonly List<string> _skus = new List<string>() { "B" };
         private const int RequiredPromotionQuantity = 3;
         private const int PromotionPrice = 40;
     }
