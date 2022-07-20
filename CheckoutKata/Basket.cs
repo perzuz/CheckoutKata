@@ -11,14 +11,21 @@ namespace CheckoutKata
     {
         public Basket()
         {
-            Items = new List<Item>();
+            Items = new Dictionary<Item, int>();
         }
 
-        public void AddItem(Item item)
+        public Dictionary<Item, int> Items { get; private set; }
+
+        public void AddItem(Item item, int quantity)
         {
-            Items.Add(item);
+            if (Items.Keys.Any(x => string.Equals(x.Sku, item.Sku, StringComparison.InvariantCultureIgnoreCase)))
+            {
+                Items[item] += quantity;
+            }
+            else
+            {
+                Items.Add(item, quantity);
+            }
         }
-
-        public List<Item> Items { get; private set; }
     }
 }
