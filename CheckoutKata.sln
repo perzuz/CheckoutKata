@@ -7,6 +7,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CheckoutKata", "CheckoutKat
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CheckoutKata.UnitTests", "CheckoutKata.UnitTests\CheckoutKata.UnitTests.csproj", "{FA66FCDC-2B0D-4A94-B58A-E39E22840452}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CheckOutKata.Models", "CheckOutKata.Models\CheckOutKata.Models.csproj", "{62C0C0D6-DEA0-40D0-B82C-48635CB9EC26}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -21,6 +23,10 @@ Global
 		{FA66FCDC-2B0D-4A94-B58A-E39E22840452}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{FA66FCDC-2B0D-4A94-B58A-E39E22840452}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{FA66FCDC-2B0D-4A94-B58A-E39E22840452}.Release|Any CPU.Build.0 = Release|Any CPU
+		{62C0C0D6-DEA0-40D0-B82C-48635CB9EC26}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{62C0C0D6-DEA0-40D0-B82C-48635CB9EC26}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{62C0C0D6-DEA0-40D0-B82C-48635CB9EC26}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{62C0C0D6-DEA0-40D0-B82C-48635CB9EC26}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
