@@ -18,6 +18,8 @@ namespace CheckoutKata
 
         public void AddItem(Item item, int quantity)
         {
+            if (item == null || quantity < 0) return;
+
             if (Items.Keys.Any(x => string.Equals(x.Sku, item.Sku, StringComparison.InvariantCultureIgnoreCase)))
             {
                 Items[item] += quantity;

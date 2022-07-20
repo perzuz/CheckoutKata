@@ -41,6 +41,120 @@ namespace CheckoutKata.UnitTests
         }
 
         [TestMethod]
+        public void ThereIsABasket_ItemWithZeroQuantityIsAdded_TotalPriceIsZero()
+        {
+            var promotions = new List<Promotion>
+            {
+                new ThreeForFourtyPromotion()
+            };
+
+            IPromotionManager promotionManager = new PromotionManager(promotions);
+
+            var item1 = new Item("A", 10);
+
+            var basket = new Basket();
+            basket.AddItem(item1, 0);
+
+            ICheckout checkout = new Checkout(basket, promotionManager);
+
+            var actualTotal = checkout.TotalCost();
+
+            Assert.AreEqual(0m, actualTotal);
+        }
+
+        [TestMethod]
+        public void ThereIsAnEmptyBasket_ItemWithNegativeQuantityIsAdded_TotalPriceIsZero()
+        {
+            var promotions = new List<Promotion>
+            {
+                new ThreeForFourtyPromotion()
+            };
+
+            IPromotionManager promotionManager = new PromotionManager(promotions);
+
+            var item1 = new Item("A", 10);
+
+            var basket = new Basket();
+            basket.AddItem(item1, -1);
+
+            ICheckout checkout = new Checkout(basket, promotionManager);
+
+            var actualTotal = checkout.TotalCost();
+
+            Assert.AreEqual(0m, actualTotal);
+        }
+
+        [TestMethod]
+        public void ThereIsAnEmptyBasket_NullItemIsAdded_TotalPriceIsZero()
+        {
+            var promotions = new List<Promotion>
+            {
+                new ThreeForFourtyPromotion()
+            };
+
+            IPromotionManager promotionManager = new PromotionManager(promotions);
+
+            Item item1 = null;
+
+            var basket = new Basket();
+            basket.AddItem(item1, 1);
+
+            ICheckout checkout = new Checkout(basket, promotionManager);
+
+            var actualTotal = checkout.TotalCost();
+
+            Assert.AreEqual(0m, actualTotal);
+        }
+
+        [TestMethod]
+        public void ThereIsABasketWithItems_ItemWithZeroQuantityIsAdded_TotalPriceIsUnaffectedByZeroItemAddition()
+        {
+            var promotions = new List<Promotion>
+            {
+                new ThreeForFourtyPromotion()
+            };
+
+            IPromotionManager promotionManager = new PromotionManager(promotions);
+
+            var item1 = new Item("A", 10);
+            var item2 = new Item("C", 40);
+            var basket = new Basket();
+            basket.AddItem(item1, 3);
+
+            basket.AddItem(item2, 0);
+
+            ICheckout checkout = new Checkout(basket, promotionManager);
+
+            var actualTotal = checkout.TotalCost();
+
+            Assert.AreEqual(30m, actualTotal);
+        }
+
+        [TestMethod]
+        public void ThereIsABasketWithItems_ItemWithNegativeQuantityIsAdded_TotalPriceIsUnaffectedByZeroItemAddition()
+        {
+            var promotions = new List<Promotion>
+            {
+                new ThreeForFourtyPromotion()
+            };
+
+            IPromotionManager promotionManager = new PromotionManager(promotions);
+
+            var item1 = new Item("A", 10);
+            var item2 = new Item("C", 40);
+            var basket = new Basket();
+            basket.AddItem(item1, 3);
+
+            basket.AddItem(item2, -1);
+
+            ICheckout checkout = new Checkout(basket, promotionManager);
+
+            var actualTotal = checkout.TotalCost();
+
+            Assert.AreEqual(30m, actualTotal);
+        }
+
+        [TestMethod]
         public void CheckoutIsReady_AndThereIsAThreeForFourtyPromotion_TotalPriceIsCalculatedWithPromotions()
         {
             var promotions = new List<Promotion>
