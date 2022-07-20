@@ -77,5 +77,7 @@ void RunUserInputMode(Basket basket)
         }
 
         basket.AddItem(itemToAdd, quantity);
+
+        Console.WriteLine($"{quantity} X {itemToAdd.Sku} added to basket");
     }
 }

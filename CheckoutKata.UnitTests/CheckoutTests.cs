@@ -41,6 +41,31 @@ namespace CheckoutKata.UnitTests
         }
 
         [TestMethod]
+        public void ThereIsABasketWithItems_SameItemIsAddedTwice_TotalPriceIsCalculated()
+        {
+            var promotions = new List<Promotion>
+            {
+                new ThreeForFourtyPromotion()
+            };
+
+            IPromotionManager promotionManager = new PromotionManager(promotions);
+
+            var item1 = new Item("A", 10);
+            var item2 = new Item("C", 40);
+            var item3 = new Item("A", 10);
+
+            var basket = new Basket();
+            basket.AddItem(item1, 1);
+            basket.AddItem(item2, 1);
+            basket.AddItem(item3, 1);
+            ICheckout checkout = new Checkout(basket, promotionManager);
+
+            var actualTotal = checkout.TotalCost();
+
+            Assert.AreEqual(60m, actualTotal);
+        }
+
+        [TestMethod]
         public void ThereIsABasket_ItemWithZeroQuantityIsAdded_TotalPriceIsZero()
         {
             var promotions = new List<Promotion>

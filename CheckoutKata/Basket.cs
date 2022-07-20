@@ -20,7 +20,7 @@ namespace CheckoutKata
         {
             if (item == null || quantity < 0) return;
 
-            if (Items.Keys.Any(x => string.Equals(x.Sku, item.Sku, StringComparison.InvariantCultureIgnoreCase)))
+            if (Items.Keys.Contains(item))
             {
                 Items[item] += quantity;
             }
