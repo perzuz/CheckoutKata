@@ -3,11 +3,11 @@ using CheckOutKata.Models;
 
 namespace CheckoutKata.Promotions
 {
-    public class ThreeForFourtyPromotion : IPromotion
+    public class ThreeForFourtyPromotion : Promotion
     {
-        public List<string> SKUs { get => _skus; set { _skus = value; } }
+        public override List<string> SKUs => _skus;
 
-        public decimal ApplyPromotion(Item item, int quantity)
+        public override decimal ApplyPromotion(Item item, int quantity)
         {
             var remainder = quantity % RequiredPromotionQuantity;
 
@@ -22,10 +22,6 @@ namespace CheckoutKata.Promotions
             return total;
         }
 
-        public bool IsPromotionApplicable(string sku)
-        {
-            return SKUs.Contains(sku);
-        }
 
         private List<string> _skus = new List<string>() { "B" };
         private const int RequiredPromotionQuantity = 3;

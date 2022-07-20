@@ -10,24 +10,24 @@ namespace CheckoutKata
 {
     public class PromotionManager : IPromotionManager
     {
-        public PromotionManager(List<IPromotion> promotions)
+        public PromotionManager(List<Promotion> promotions)
         {
             _promotions = promotions;
         }
 
-        public decimal ApplyPromotions(KeyValuePair<Item, int> item)
+        public decimal ApplyPromotions(Item item, int quantity)
         {
-            if (!_promotions.Any(x => x.IsPromotionApplicable(item.Key.Sku)))
+            if (!_promotions.Any(x => x.IsPromotionApplicable(item.Sku)))
             {
-                return item.Value * item.Key.Price;
+                return quantity * item.Price;
             }
 
-            var costWithPromotion = _promotions.First(x => x.IsPromotionApplicable(item.Key.Sku))
-                .ApplyPromotion(item.Key, item.Value);
+            var costWithPromotion = _promotions.First(x => x.IsPromotionApplicable(item.Sku))
+                .ApplyPromotion(item, quantity);
 
             return costWithPromotion;
         }
 
-        private readonly List<IPromotion> _promotions;
+        private readonly List<Promotion> _promotions;
     }
 }

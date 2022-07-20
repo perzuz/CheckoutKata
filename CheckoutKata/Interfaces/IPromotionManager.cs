@@ -9,6 +9,6 @@ namespace CheckoutKata.Interfaces
 {
     public interface IPromotionManager
     {
-        public decimal ApplyPromotions(KeyValuePair<Item, int> item);
+        public decimal ApplyPromotions(Item item, int quantity);
     }
 }

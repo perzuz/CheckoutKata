@@ -21,7 +21,7 @@ namespace CheckoutKata
 
             foreach (var item in _basket.Items)
             {
-                var itemCostWithPromotions = _promotionManager.ApplyPromotions(item);
+                var itemCostWithPromotions = _promotionManager.ApplyPromotions(item.Key, item.Value);
 
                 total += itemCostWithPromotions;
             }

@@ -21,7 +21,7 @@ namespace CheckoutKata.UnitTests
         [TestMethod]
         public void ThereIsABasketWithItems_CheckoutIsFinished_TotalPriceIsCalculated()
         {
-            var promotions = new List<IPromotion>
+            var promotions = new List<Promotion>
             {
                 new ThreeForFourtyPromotion()
             };
@@ -37,13 +37,13 @@ namespace CheckoutKata.UnitTests
 
             var actualTotal = checkout.TotalCost();
 
-            Assert.AreEqual(50, actualTotal);
+            Assert.AreEqual(50m, actualTotal);
         }
 
         [TestMethod]
-        public void GivenCheckoutIsReady_AndThereIsAThreeForFourtyPromotion_TotalPriceIsCalculatedWithPromotions()
+        public void CheckoutIsReady_AndThereIsAThreeForFourtyPromotion_TotalPriceIsCalculatedWithPromotions()
         {
-            var promotions = new List<IPromotion>
+            var promotions = new List<Promotion>
             {
                 new ThreeForFourtyPromotion()
             };
@@ -56,13 +56,13 @@ namespace CheckoutKata.UnitTests
 
             var actualTotal = checkout.TotalCost();
 
-            Assert.AreEqual(70, actualTotal);
+            Assert.AreEqual(70m, actualTotal);
         }
 
         [TestMethod]
-        public void GivenCheckoutIsReady_AndThereAreNoapplicablePromotions_TotalPriceIsCalculatedWithoutPromotions()
+        public void CheckoutIsReady_AndThereAreNoapplicablePromotions_TotalPriceIsCalculatedWithoutPromotions()
         {
-            var promotions = new List<IPromotion>
+            var promotions = new List<Promotion>
             {
                 new ThreeForFourtyPromotion()
             };
@@ -75,7 +75,26 @@ namespace CheckoutKata.UnitTests
 
             var actualTotal = checkout.TotalCost();
 
-            Assert.AreEqual(100, actualTotal);
+            Assert.AreEqual(100m, actualTotal);
+        }
+
+        [TestMethod]
+        public void CheckoutIsReady_AndThereIsATwentyFivePercentOffEveryTwoPromotion_TotalPriceIsCalculatedWithPromotions()
+        {
+            var promotions = new List<Promotion>
+            {
+                new TwentyFivePercentOffEveryTwoPromotion()
+            };
+
+            IPromotionManager promotionManager = new PromotionManager(promotions);
+
+            var basket = new Basket();
+            basket.AddItem(new Item("D", 55), 3);
+            ICheckout checkout = new Checkout(basket, promotionManager);
+
+            var actualTotal = checkout.TotalCost();
+
+            Assert.AreEqual(137.50m, actualTotal);
         }
     }
 }
