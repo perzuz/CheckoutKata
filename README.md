@@ -1,5 +1,5 @@
 # CheckoutKata
-CheckoutKata is a coding challenge that involved designing, developing and testing code to match the following requirements:
+CheckoutKata is a coding challenge that involves designing, developing and testing code to match the following requirements:
 
 1. Given I have selected to add an item to the basket Then the item should be added to the basket
 2. Given items have been added to the basket Then the total cost of the basket should be calculated
